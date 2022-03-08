@@ -1,0 +1,77 @@
+/******************************* Media queries ********************************/
+
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: #000000e6;
+		color: #ffffffcc;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	body {
+		background-color: #ebe5e5;
+		color: #000000b3;
+	}
+
+	#main-heading {
+		color: white;
+	}
+}
+
+/******************************* General styles *******************************/
+
+#main {
+	width: 70%;
+	margin: auto;
+	font-family: "Roboto Mono", serif;
+	font-size: 1.1rem;
+}
+
+#main-heading {
+	text-align: center;
+	padding: 20px 0px;
+	background-color: #a72626;
+	border-radius: 10px;
+}
+
+#calculator {
+	width: 95%;
+	margin: auto;
+	margin-top: 70px;
+}
+
+.row {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+}
+
+.button {
+	flex: 1;
+	padding: 30px;
+	font-size: 1.8rem;
+	background-color: #0c530c;
+	color: white;
+	border: none;
+}
+
+.button:hover {
+	background-color: #15a415;
+}
+
+.triple {
+	flex: 3;
+}
+
+.double {
+	flex: 2;
+}
+
+.screen {
+	width: 100%;
+	background-color: #333333;
+	padding: 20px;
+	text-align: right;
+	font-size: 1.6rem;
+	font-weight: bold;
+}
