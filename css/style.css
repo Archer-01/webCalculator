@@ -32,6 +32,7 @@
 	padding: 20px 0px;
 	background-color: #a72626;
 	border-radius: 10px;
+	margin-top: 100px;
 }
 
 #calculator {
@@ -67,7 +68,7 @@
 	flex: 2;
 }
 
-.screen {
+#screen {
 	width: 100%;
 	background-color: #333333;
 	padding: 20px;
