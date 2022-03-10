@@ -9,7 +9,10 @@ const	equalsBtn = document.querySelector(".equals-btn")
 
 //*************************** Global variables *******************************//
 
-let		result = 0;
+let		currentNum = 0;
+let		operation = '+';
+let		firstNum = 0;
+let		secondNum = 0;
 
 //****************************** Event Listeners *****************************//
 
@@ -38,8 +41,8 @@ function	numberHook(event) {
 	let	pressedNum;
 
 	pressedNum = parseInt(event.target.textContent);
-	result = (result * 10) + pressedNum;
-	screen.textContent = result.toString();
+	currentNum = (currentNum * 10) + pressedNum;
+	screen.textContent = currentNum.toString();
 }
 
 /**
@@ -50,7 +53,10 @@ function	numberHook(event) {
  */
 function	clearBtnHook(event) {
 	screen.textContent = "0";
-	result = 0;
+	currentNum = 0;
+	firstNum = 0;
+	secondNum = 0;
+	operation = '+';
 }
 
 /**
@@ -60,18 +66,48 @@ function	clearBtnHook(event) {
  * @param {object} event Event object
  */
 function	eraseBtnHook(event) {
-	result = parseInt(result / 10);
-	screen.textContent = result.toString();
+	currentNum = parseInt(currentNum / 10);
+	screen.textContent = currentNum.toString();
 }
 
+/**
+ * Operation buttons hook.
+ * Calculate operation.
+ *
+ * @param {object} event Event object
+ */
 function	operationBtnHook(event) {
-	console.log(`Operation button was pressed`);
+	if (firstNum === 0 && secondNum === 0) {
+		firstNum = currentNum;
+	} else if (firstNum != 0 && secondNum === 0) {
+		secondNum = currentNum;
+	} else if (firstNum !== 0 && secondNum !== 0) {
+		firstNum = eval(`${firstNum} ${operation} ${secondNum}`);
+		secondNum = currentNum;
+	}
+	operation = event.target.textContent;
+	currentNum = 0;
+	console.log(firstNum, operation, secondNum);
 }
 
+/**
+ * Equals button hook.
+ *
+ * @param {object} event Event object
+ */
 function	equalsBtnHook(event) {
-	console.log(`Equals button was pressed`);
+	if (currentNum !== 0 && firstNum === 0 && currentNum !== 0) {
+		firstNum = currentNum;
+		secondNum = 0;
+	} else if (firstNum !== 0 && secondNum === 0 && currentNum !== 0) {
+		secondNum = currentNum;
+	} else if (firstNum !== 0 && secondNum !== 0 && currentNum !== 0) {
+		firstNum = eval(`${firstNum} ${operation} ${secondNum}`);
+		secondNum = currentNum;
+	}
+	currentNum = eval(`${firstNum} ${operation} ${secondNum}`);
+	screen.textContent = currentNum.toString();
+	firstNum = 0;
+	secondNum = 0;
+	operation = '+';
 }
-
-//********************************* Main Code ********************************//
-
-console.log(`webCalculator is loading`);
