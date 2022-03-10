@@ -7,6 +7,10 @@ const	eraseBtn = document.querySelector(".erase-btn");
 const	operationBtn = document.querySelectorAll(".operation-btn");
 const	equalsBtn = document.querySelector(".equals-btn")
 
+//*************************** Global variables *******************************//
+
+let		result = 0;
+
 //****************************** Event Listeners *****************************//
 
 numbers.forEach(function (number) {
@@ -24,16 +28,40 @@ equalsBtn.addEventListener("click", equalsBtnHook);
 
 //******************************** Event hooks *******************************//
 
+/**
+ * Number buttons hook.
+ * Update calculator screen when number is pressed.
+ *
+ * @param {object} event Event object
+ */
 function	numberHook(event) {
-	console.log(`Number button was pressed`);
+	let	pressedNum;
+
+	pressedNum = parseInt(event.target.textContent);
+	result = (result * 10) + pressedNum;
+	screen.textContent = result.toString();
 }
 
+/**
+ * Clear calculator screen hook.
+ * Clear screen when C button is pressed.
+ *
+ * @param {object} event Event object
+ */
 function	clearBtnHook(event) {
-	console.log(`Clear button was pressed`);
+	screen.textContent = "0";
+	result = 0;
 }
 
+/**
+ * Erase button (Left arrow button) hook.
+ * Erase last pressed number on calculator screen.
+ *
+ * @param {object} event Event object
+ */
 function	eraseBtnHook(event) {
-	console.log(`Erease button was pressed`);
+	result = parseInt(result / 10);
+	screen.textContent = result.toString();
 }
 
 function	operationBtnHook(event) {
